@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>results</title>
+    <link rel="icon" href="{%static 'images/webicon.png' %}">
+
+</head>
+
+<body>
+
+    <header>
+        <h1>student results</h1>
+    </header>
+<img src="{%static 'images/image.jpg' %}" alt="home"/>
+    <h2>Form</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Submit</button>
+</form>
+
+<h3>Subjects</h3>
+<table>
+    <thead>
+        <tr>
+            <th>subject</th>
+            <th>mark</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for subject in subjects %}
+            <tr>
+                <td>{{ subject.id }}</td>
+                <td>{{ subject.name }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+    </section>
+
+</body>
+</html>
