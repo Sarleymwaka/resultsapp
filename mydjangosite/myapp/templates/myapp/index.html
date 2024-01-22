@@ -16,31 +16,33 @@
     </header>
 <img src="{%static 'images/image.jpg' %}" alt="home"/>
     <h2>Form</h2>
-<form method="post">
+<form method="post" action="{% url 'index' %}">
     {% csrf_token %}
-    {{ form.as_p }}
+    {{ form.as_table }}
     <button type="submit">Submit</button>
 </form>
-
-<h3>Subjects</h3>
-<table>
-    <thead>
-        <tr>
-            <th>subject</th>
-            <th>mark</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for subject in subjects %}
+    {% for form in formset%}
+     {% for field in form %}
+      <table>
             <tr>
-                <td>{{ subject.id }}</td>
-                <td>{{ subject.name }}</td>
+                <th>name</th>
+                <th>maths</th>
+                <th>english</th>
+                <th>science</th>
+                <th>average</th>
             </tr>
-        {% endfor %}
-    </tbody>
-</table>
+         <tbody>
+                <tr>
+                    <td>{{ form.cleaned_data.name }}</td>
+                    <td>{{ form.cleaned_data.maths}}</td>
+                    <td>{{ form.cleaned_data.english}}</td>
+                    <td>{{ form.cleaned_data.science}}</td>
+                    <td>{{ form.cleaned_data.average}}</td>
 
-    </section>
-
+                </tr>
+         </tbody>
+       </table>
+      {% endfor %}
+     {% endfor %}
 </body>
 </html>
